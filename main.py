@@ -12,10 +12,29 @@ FOOD_COLOUR = "red"
 BACKGROUND_COLOUR = "black"
 
 class Snake:
-    pass  # You will need to implement this
+    def __init__(self):
+        self.body_size = BODY_PARTS
+        self.coordinates = []
+        self.squares = []
+
+        for i in range(0, BODY_PARTS):
+            self.coordinates.append([0,0])
+
+        for x, y in self.coordinates:
+            square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill = SNAKE_COLOUR, tag="snake")
+            self.squares.append(square)      
 
 class Food:
-    pass  # You will need to implement this
+
+    def __init__(self):
+
+        x = random.randint(0, (GAME_WIDTH // SPACE_SIZE) - 1) * SPACE_SIZE  # to generate x random location for food
+        y = random.randint(0, (GAME_HEIGHT // SPACE_SIZE) - 1) * SPACE_SIZE  # to generate y random location for food
+
+        self.coordinates = [x, y]
+
+        canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOUR, tag="food")
+      
 
 def next_turn():
     pass  # Implement snake movement and food collision
@@ -60,6 +79,9 @@ y = int((screen_height / 2) - (window_height / 2))
 
 # Now set the geometry to center the window
 window.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
+snake = Snake()
+food = Food()
 
 # Start the main loop
 window.mainloop()
