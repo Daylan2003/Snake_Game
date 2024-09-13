@@ -2,8 +2,8 @@ from tkinter import *
 import random
 
 # Constants
-GAME_WIDTH = 700
-GAME_HEIGHT = 700
+GAME_WIDTH = 1000
+GAME_HEIGHT = 800
 SPEED = 50
 SPACE_SIZE = 50
 BODY_PARTS = 3
@@ -117,7 +117,9 @@ def check_collisions(snake):
     
 
 def game_over():
-    pass  # Handle the end of the game
+    canvas.delete(ALL)
+    canvas.create_text((canvas.winfo_width() / 2), (canvas.winfo_height() / 2), font=('consolas', 80), text = 'GAME OVER', fill = "red", tag = "gameover")
+    
 
 # Create the main window
 window = Tk()
